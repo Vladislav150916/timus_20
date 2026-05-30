@@ -1,11 +1,12 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int N = in.nextInt();
-
+public class timus_1100 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
 
         ArrayList<Integer>[] arrList = new ArrayList[101];
         for (int i = 0; i <= 100; i++) {
@@ -13,19 +14,18 @@ public class Main {
         }
 
         for (int i = 0; i < N; i++) {
-            int ID = in.nextInt();
-            int M = in.nextInt();
+            String[] parts = br.readLine().split(" ");
+            int ID = Integer.parseInt(parts[0]);
+            int M = Integer.parseInt(parts[1]);
             arrList[M].add(ID);
         }
 
         StringBuilder sb = new StringBuilder();
         for (int m = 100; m >= 0; m--) {
             for (int id : arrList[m]) {
-                String str = id + " " + m + "\n";
-                sb.append(str);
+                sb.append(id).append(' ').append(m).append('\n');
             }
         }
-        in.close();
         System.out.print(sb);
     }
 }
